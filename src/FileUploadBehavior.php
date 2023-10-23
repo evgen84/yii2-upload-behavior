@@ -144,9 +144,9 @@ class FileUploadBehavior extends \yii\base\Behavior
     {
         $path = Yii::getAlias($path);
 
-        $pi = pathinfo($this->owner->{$this->attribute});
+        $pi = pathinfo($this->owner->{$this->attribute} ?? "");
         $fileName = ArrayHelper::getValue($pi, 'filename');
-        $extension = strtolower(ArrayHelper::getValue($pi, 'extension'));
+        $extension = strtolower(ArrayHelper::getValue($pi, 'extension') ?? '');
 
         return preg_replace_callback('|\[\[([\w\_/]+)\]\]|', function ($matches) use ($fileName, $extension) {
             $name = $matches[1];
